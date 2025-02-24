@@ -1,12 +1,43 @@
 'use client';
 
+import React from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, Monitor, Palette, Sun, Eye, Clock, ArrowRight, List } from 'lucide-react';
 // import { Metadata } from 'next'; // While you import this, Next.js 13/14 recommends using the metadata object in route.js/ts for SEO instead of Head.  I'll address both.
 import Head from 'next/head';
 
-const posts = {
+type Post = {
+  title: string;
+  date: string;
+  category: string;
+  readTime: string;
+  icon: React.ReactElement;
+  content: {
+    intro: string;
+    sections: Array<{
+      type: string;
+      title: string;
+      content?: string;
+      headers?: string[];
+      rows?: string[][];
+      items?: Array<{ title: string; description: string }>;
+      level?: 'low' | 'medium' | 'high';
+    }>;
+  };
+  tool?: {
+    name: string;
+    description: string;
+    link: string;
+  };
+  seo?: {
+    title: string;
+    description: string;
+    keywords: string[];
+  };
+};
+
+const posts: Record<string, Post> = {
   'how-to-spot-and-fix-dead-pixels': {
     title: 'How to Spot and Fix Dead Pixels on Your Screen',
     date: 'February 23, 2025',
