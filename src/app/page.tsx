@@ -1,8 +1,8 @@
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { ArrowRight, Monitor, ZapIcon, Eye, Sun, Clock, ChevronRight, Moon, Globe, Activity, Users, LayoutGrid } from 'lucide-react';
+import { Monitor, ZapIcon, Eye, Sun, Clock, ChevronRight, Globe, Activity, Users, LayoutGrid } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 const tests = [

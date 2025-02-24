@@ -360,33 +360,6 @@ const posts: Record<string, Post> = {
   },
 };
 
-function formatContent(content: string) {
-  return content.split('\n').map((line, index) => {
-    if (line.startsWith('## ')) {
-      return (
-        <h2 key={index} className="text-2xl font-semibold text-white mt-8 mb-4">
-          {line.replace('## ', '')}
-        </h2>
-      );
-    }
-    if (line.startsWith('### ')) {
-      return (
-        <h3 key={index} className="text-xl font-semibold text-white mt-6 mb-3">
-          {line.replace('### ', '')}
-        </h3>
-      );
-    }
-    if (line.trim().length === 0) {
-      return <div key={index} className="h-4" />;
-    }
-    return (
-      <p key={index} className="text-gray-300 mb-4">
-        {line.trim()}
-      </p>
-    );
-  });
-}
-
 function SeverityBadge({ severity }: { severity: 'low' | 'medium' | 'high' }) {
   const colors = {
     low: 'bg-green-400/10 text-green-400 border-green-400/20',
@@ -457,7 +430,7 @@ function Section({ title, content }: { title: string, content: string }) {
   );
 }
 
-function BlogContent({ content }: { content: any }) {
+function BlogContent({ content }: { content: Post['content'] }) {
   if (typeof content === 'string') {
     return <p className="text-gray-300">{content}</p>;
   }
@@ -468,21 +441,29 @@ function BlogContent({ content }: { content: any }) {
         <p className="text-xl text-gray-300 leading-relaxed">{content.intro}</p>
       </div>
 
-      {content.sections.map((section: any, index: number) => (
+      {content.sections.map((section: {
+        type: string;
+        title: string;
+        content?: string;
+        headers?: string[];
+        rows?: string[][];
+        items?: Array<{ title: string; description: string }>;
+        level?: 'low' | 'medium' | 'high';
+      }, index: number) => (
         <section key={index} className="space-y-6">
-          {section.type === 'section' ? (
+          {section.type === 'section' && section.content ? (
             <Section title={section.title} content={section.content} />
-          ) : section.type === 'table' ? (
+          ) : section.type === 'table' && section.headers && section.rows ? (
             <>
               <h2 className="text-2xl font-semibold text-white">{section.title}</h2>
               <TableSection headers={section.headers} rows={section.rows} />
             </>
-          ) : section.type === 'list' ? (
+          ) : section.type === 'list' && section.items ? (
             <>
               <h2 className="text-2xl font-semibold text-white">{section.title}</h2>
               <ListSection items={section.items} />
             </>
-          ) : section.type === 'severity' ? (
+          ) : section.type === 'severity' && section.level ? (
             <>
               <h2 className="text-2xl font-semibold text-white">{section.title}</h2>
               <div className="p-6 rounded-xl bg-gray-800/50 border border-gray-700">

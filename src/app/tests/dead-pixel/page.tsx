@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, ArrowRight, Maximize, Minimize, X, Play, Pause, Info, Grid2X2, Settings } from 'lucide-react';
+import { Maximize, Minimize, X, Play, Pause, Info, Grid2X2, Settings } from 'lucide-react';
 import Link from 'next/link';
 
 const colors = [
