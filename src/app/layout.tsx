@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: 'your-google-verification-code', // Add your Google Search Console verification code
+    google: 'EBLawN1zwgZbeCRGnTslE4d9QP9rxDnK5eNlyzlm6M8',
   },
 };
 
@@ -71,6 +71,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <link rel="canonical" href="https://urgenthai.com" />
       </head>
       <body className={inter.className}>

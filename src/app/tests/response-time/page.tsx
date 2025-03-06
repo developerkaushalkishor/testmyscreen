@@ -17,9 +17,9 @@ const patterns = [
   {
     name: 'Lines',
     render: () => (
-      <div className="flex space-x-4">
+      <div className="flex space-x-2 sm:space-x-4">
         {[...Array(8)].map((_, i) => (
-          <div key={i} className="w-8 h-32">
+          <div key={i} className="w-4 sm:w-8 h-24 sm:h-32">
             <div className="w-full h-full bg-white" />
             <div className="w-full h-full bg-black" />
           </div>
@@ -31,9 +31,9 @@ const patterns = [
   {
     name: 'Blocks',
     render: () => (
-      <div className="flex space-x-8">
+      <div className="flex space-x-4 sm:space-x-8">
         {[...Array(5)].map((_, i) => (
-          <div key={i} className="w-16 h-32 bg-white rounded-lg" />
+          <div key={i} className="w-8 sm:w-16 h-24 sm:h-32 bg-white rounded-lg" />
         ))}
       </div>
     ),
@@ -42,9 +42,9 @@ const patterns = [
   {
     name: 'Text',
     render: () => (
-      <div className="flex space-x-8">
+      <div className="flex space-x-4 sm:space-x-8">
         {[...Array(3)].map((_, i) => (
-          <div key={i} className="bg-white text-black px-6 py-3 rounded-lg text-xl font-bold">
+          <div key={i} className="bg-white text-black px-4 sm:px-6 py-2 sm:py-3 rounded-lg text-base sm:text-xl font-bold">
             Motion Test
           </div>
         ))}
@@ -55,9 +55,9 @@ const patterns = [
   {
     name: 'Pixels',
     render: () => (
-      <div className="flex space-x-2">
+      <div className="flex space-x-1 sm:space-x-2">
         {[...Array(16)].map((_, i) => (
-          <div key={i} className="w-4 h-32 bg-white" />
+          <div key={i} className="w-2 sm:w-4 h-24 sm:h-32 bg-white" />
         ))}
       </div>
     ),
@@ -187,42 +187,42 @@ export default function ResponseTimeTest() {
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="container mx-auto px-4 pt-4 flex justify-between items-center card p-4"
+          className="container mx-auto px-4 pt-4 flex flex-col sm:flex-row justify-between items-center card p-4 gap-4 sm:gap-0"
           style={{
             backgroundColor: 'rgba(0, 0, 0, 0.85)',
             backdropFilter: 'blur(10px)',
             border: '1px solid rgba(255, 255, 255, 0.1)',
           }}
         >
-          <div className="flex items-center gap-4">
-            <Link href="/" className="button-secondary flex items-center gap-2 hover:bg-white/10">
-              <X className="w-5 h-5" />
-              <span>Exit Test</span>
+          <div className="flex items-center gap-2 sm:gap-4">
+            <Link href="/" className="button-secondary flex items-center gap-2 hover:bg-white/10 text-sm sm:text-base">
+              <X className="w-4 h-4 sm:w-5 sm:h-5" />
+              <span className="hidden sm:inline">Exit Test</span>
             </Link>
             <button
               onClick={() => setShowInstructions(true)}
               className="button-secondary p-2 hover:bg-white/10"
               title="Instructions (I)"
             >
-              <Info className="w-5 h-5" />
+              <Info className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-4 flex-wrap justify-center">
             <button
               onClick={() => setIsRunning(!isRunning)}
-              className={`button-secondary flex items-center gap-2 ${
+              className={`button-secondary flex items-center gap-2 text-sm sm:text-base ${
                 isRunning ? 'bg-[var(--primary)]' : 'hover:bg-white/10'
               }`}
               title="Play/Pause (Space)"
             >
               {isRunning ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
-              <span>{isRunning ? 'Pause' : 'Play'}</span>
+              <span className="hidden sm:inline">{isRunning ? 'Pause' : 'Play'}</span>
             </button>
 
             <button
               onClick={handlePatternChange}
-              className="button-secondary flex items-center gap-2 hover:bg-white/10"
+              className="button-secondary flex items-center gap-2 hover:bg-white/10 text-sm sm:text-base"
               title="Next Pattern (→)"
             >
               <span>{patterns[pattern].name}</span>
@@ -234,7 +234,7 @@ export default function ResponseTimeTest() {
               className="button-secondary p-2 hover:bg-white/10"
               title="Settings (S)"
             >
-              <Settings className="w-5 h-5" />
+              <Settings className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
 
             <button
@@ -242,7 +242,7 @@ export default function ResponseTimeTest() {
               className="button-secondary hover:bg-white/10"
               title={isFullscreen ? 'Exit Fullscreen (ESC)' : 'Enter Fullscreen'}
             >
-              {isFullscreen ? <Minimize className="w-5 h-5" /> : <Maximize className="w-5 h-5" />}
+              {isFullscreen ? <Minimize className="w-4 h-4 sm:w-5 sm:h-5" /> : <Maximize className="w-4 h-4 sm:w-5 sm:h-5" />}
             </button>
           </div>
         </motion.div>
@@ -259,13 +259,13 @@ export default function ResponseTimeTest() {
               justifyContent: 'center',
               alignItems: 'center',
               height: '100%',
-              willChange: 'transform', // Performance optimization
+              willChange: 'transform',
             }}
           >
-            <div className="flex items-center justify-center w-1/2">
+            <div className="flex items-center justify-center w-1/2 scale-75 sm:scale-100">
               {patterns[pattern].render()}
             </div>
-            <div className="flex items-center justify-center w-1/2">
+            <div className="flex items-center justify-center w-1/2 scale-75 sm:scale-100">
               {patterns[pattern].render()}
             </div>
           </motion.div>

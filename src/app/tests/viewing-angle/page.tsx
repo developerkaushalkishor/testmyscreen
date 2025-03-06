@@ -102,7 +102,7 @@ export default function ViewingAngleTest() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
-          className={`absolute top-4 left-4 right-4 flex justify-between items-center card p-4 z-50 ${
+          className={`absolute top-4 left-4 right-4 flex flex-col sm:flex-row justify-between items-center card p-4 z-50 gap-4 sm:gap-0 ${
             isFullscreen ? 'opacity-0 hover:opacity-100 transition-opacity duration-300' : ''
           }`}
           style={{
@@ -110,36 +110,36 @@ export default function ViewingAngleTest() {
             backdropFilter: 'blur(10px)',
           }}
         >
-          <div className="flex items-center gap-4">
-            <Link href="/" className="button-secondary flex items-center gap-2 hover:bg-white/10">
-              <X className="w-5 h-5" />
-              <span>Exit Test</span>
+          <div className="flex items-center gap-2 sm:gap-4">
+            <Link href="/" className="button-secondary flex items-center gap-2 hover:bg-white/10 text-sm sm:text-base">
+              <X className="w-4 h-4 sm:w-5 sm:h-5" />
+              <span className="hidden sm:inline">Exit Test</span>
             </Link>
             <button
               onClick={() => setShowInstructions(true)}
               className="button-secondary p-2 hover:bg-white/10"
               title="Show Instructions"
             >
-              <Info className="w-5 h-5" />
+              <Info className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-4">
             <button
               onClick={() => setIsRotating(!isRotating)}
-              className={`button-secondary flex items-center gap-2 ${
+              className={`button-secondary flex items-center gap-2 text-sm sm:text-base ${
                 isRotating ? 'bg-[var(--primary)]' : 'hover:bg-white/10'
               }`}
             >
               {isRotating ? (
                 <>
                   <Pause className="w-4 h-4" />
-                  <span>Pause</span>
+                  <span className="hidden sm:inline">Pause</span>
                 </>
               ) : (
                 <>
                   <Play className="w-4 h-4" />
-                  <span>Rotate</span>
+                  <span className="hidden sm:inline">Rotate</span>
                 </>
               )}
             </button>
@@ -149,7 +149,7 @@ export default function ViewingAngleTest() {
               className="button-secondary p-2 hover:bg-white/10"
               title="Reset Rotation"
             >
-              <RotateCcw className="w-5 h-5" />
+              <RotateCcw className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
 
             <button
@@ -157,7 +157,7 @@ export default function ViewingAngleTest() {
               className="button-secondary p-2 hover:bg-white/10"
               title="Test Settings"
             >
-              <Settings className="w-5 h-5" />
+              <Settings className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
 
             <button
@@ -166,9 +166,9 @@ export default function ViewingAngleTest() {
               title={isFullscreen ? 'Exit Fullscreen' : 'Enter Fullscreen'}
             >
               {isFullscreen ? (
-                <Minimize className="w-5 h-5" />
+                <Minimize className="w-4 h-4 sm:w-5 sm:h-5" />
               ) : (
-                <Maximize className="w-5 h-5" />
+                <Maximize className="w-4 h-4 sm:w-5 sm:h-5" />
               )}
             </button>
           </div>
@@ -179,19 +179,19 @@ export default function ViewingAngleTest() {
       <div className="absolute inset-0 flex items-center justify-center perspective-1000">
         <motion.div
           animate={controls}
-          className="w-64 h-64 relative preserve-3d"
+          className="w-48 h-48 sm:w-64 sm:h-64 relative preserve-3d"
           style={{
             transformStyle: 'preserve-3d',
           }}
         >
           {colors.map((color, index) => {
             const transforms = [
-              'translateZ(8rem)',
-              'translateZ(-8rem) rotateY(180deg)',
-              'translateX(8rem) rotateY(90deg)',
-              'translateX(-8rem) rotateY(-90deg)',
-              'translateY(-8rem) rotateX(90deg)',
-              'translateY(8rem) rotateX(-90deg)',
+              'translateZ(6rem) sm:translateZ(8rem)',
+              'translateZ(-6rem) sm:translateZ(-8rem) rotateY(180deg)',
+              'translateX(6rem) sm:translateX(8rem) rotateY(90deg)',
+              'translateX(-6rem) sm:translateX(-8rem) rotateY(-90deg)',
+              'translateY(-6rem) sm:translateY(-8rem) rotateX(90deg)',
+              'translateY(6rem) sm:translateY(8rem) rotateX(-90deg)',
             ];
             return (
               <div
@@ -205,7 +205,7 @@ export default function ViewingAngleTest() {
               >
                 <div className="text-center">
                   <div 
-                    className="text-lg font-semibold"
+                    className="text-base sm:text-lg font-semibold"
                     style={{ color: color.value === '#000000' ? '#FFFFFF' : '#000000' }}
                   >
                     {color.name}
@@ -227,19 +227,19 @@ export default function ViewingAngleTest() {
             className="fixed inset-0 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm z-50"
           >
             <div 
-              className="card p-6 max-w-md w-full space-y-4"
+              className="card p-4 sm:p-6 max-w-md w-full space-y-4"
               style={{
                 backgroundColor: 'rgba(0, 0, 0, 0.9)',
                 backdropFilter: 'blur(10px)',
               }}
             >
               <div className="flex items-start justify-between">
-                <h2 className="text-xl font-semibold">Test Settings</h2>
+                <h2 className="text-lg sm:text-xl font-semibold">Test Settings</h2>
                 <button 
                   onClick={() => setShowSettings(false)}
                   className="button-secondary p-2 hover:bg-white/10"
                 >
-                  <X className="w-5 h-5" />
+                  <X className="w-4 h-4 sm:w-5 sm:h-5" />
                 </button>
               </div>
 
