@@ -73,6 +73,7 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <link rel="canonical" href="https://urgenthai.com" />
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5097800204028582" crossOrigin="anonymous"></script>
       </head>
       <body className={inter.className}>
         <Providers>
